@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/XemuManager.Core/XemuManager.Core.csproj" />
+    <Project Path="src/XemuManager.Desktop/XemuManager.Desktop.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/XemuManager.Core.Tests/XemuManager.Core.Tests.csproj" />
+  </Folder>
+</Solution>
