@@ -75,4 +75,9 @@ public class GitHubReleaseClient : IGitHubReleaseClient
             throw new DownloadException(DownloadError.ConnectionLost, ex);
         }
     }
+
+    Task<Stream> DownloadAssetAsync(Uri assetUri, CancellationToken cancellationToken = default)
+    {
+        
+    }
 }

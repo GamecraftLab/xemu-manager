@@ -6,4 +6,5 @@ public interface IGitHubReleaseClient
         string owner,
         string repo,
         CancellationToken cancellationToken = default);
+    Task<Stream> DownloadAssetAsync(Uri assetUri, CancellationToken cancellationToken = default);
 }
