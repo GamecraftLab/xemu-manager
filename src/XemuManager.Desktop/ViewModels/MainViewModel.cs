@@ -5,5 +5,5 @@ namespace XemuManager.Desktop.ViewModels;
 public partial class MainViewModel : ViewModelBase
 {
     [ObservableProperty]
-    public partial string Greeting { get; set; } = "Welcome to Xemu Manager!";
+    private string _greeting = "Welcome to Xemu Manager!";
 }
