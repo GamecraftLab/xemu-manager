@@ -2,28 +2,42 @@ using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
 using XemuManager.Core.Exceptions.Download;
+using System.Linq;
 
+namespace XemuManager.Core.ReleaseManager;
 
-namespace XemuManager.Core.ReleaseClient;
-
-public class GitHubReleaseClient : IGitHubReleaseClient
+public class GitHubReleaseManager : IGitHubReleaseManager
 {
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower
+    };
+
     private readonly HttpClient _httpClient;
 
-    public GitHubReleaseClient(HttpClient httpClient)
+    public GitHubReleaseManager(HttpClient httpClient)
     {
         _httpClient = httpClient;
         _httpClient.BaseAddress = new Uri("https://api.github.com/");
         _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("XemuManager");
     }
     
-    public async Task<GitHubRelease?> GetLatestReleaseAsync(string owner, string repo, CancellationToken cancellationToken = default)
+    public async Task<GitHubRelease?> GetLatestReleaseAsync(
+        string owner, string repo,
+        Func<GitHubAsset, bool>? filter = null,
+        CancellationToken cancellationToken = default)
     {
         try
         {
             var release = await _httpClient.GetFromJsonAsync<GitHubRelease>(
                 $"repos/{owner}/{repo}/releases/latest",
+                JsonOptions,
                 cancellationToken);
+
+            if (release is not null && filter is not null)
+            {
+                release = release with { Assets = release.Assets.Where(filter).ToList() };
+            }
 
             return release;
         }
@@ -74,10 +88,5 @@ public class GitHubReleaseClient : IGitHubReleaseClient
         {
             throw new DownloadException(DownloadError.ConnectionLost, ex);
         }
-    }
-
-    Task<Stream> DownloadAssetAsync(Uri assetUri, CancellationToken cancellationToken = default)
-    {
-        
     }
 }
