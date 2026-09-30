@@ -1,7 +1,7 @@
 using System.IO.Compression;
-using XemuManager.Core.Exceptions.Download;
+using XemuManager.Core.DownloadManager.Exceptions;
 
-namespace XemuManager.Core.Installation;
+namespace XemuManager.Core.DownloadManager.Installation;
 
 public static class PackageInstaller
 {

@@ -1,6 +1,6 @@
 
 
-namespace XemuManager.Core.ReleaseManager;
+namespace XemuManager.Core.DownloadManager.ReleaseManager;
 
 public record GitHubRelease(string TagName, 
     DateTimeOffset PublishedAt,

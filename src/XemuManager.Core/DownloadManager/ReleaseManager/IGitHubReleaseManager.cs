@@ -1,4 +1,4 @@
-namespace XemuManager.Core.ReleaseManager;
+namespace XemuManager.Core.DownloadManager.ReleaseManager;
 
 public interface IGitHubReleaseManager
 {

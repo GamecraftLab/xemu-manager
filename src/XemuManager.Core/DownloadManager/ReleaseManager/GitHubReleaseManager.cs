@@ -1,10 +1,10 @@
 using System.Net;
 using System.Net.Http.Json;
 using System.Text.Json;
-using XemuManager.Core.Exceptions.Download;
+using XemuManager.Core.DownloadManager.Exceptions;
 using System.Linq;
 
-namespace XemuManager.Core.ReleaseManager;
+namespace XemuManager.Core.DownloadManager.ReleaseManager;
 
 public class GitHubReleaseManager : IGitHubReleaseManager
 {

@@ -1,8 +1,8 @@
-using XemuManager.Core.ReleaseManager;
+using XemuManager.Core.DownloadManager.ReleaseManager;
 
-namespace XemuManager.Core.DownloadManager;
+namespace XemuManager.Core.DownloadManager.Downloader;
 
-public interface IDownloadManager
+public interface IDownloader
 {
     public Task<string> DownloadAsync(
         string owner,

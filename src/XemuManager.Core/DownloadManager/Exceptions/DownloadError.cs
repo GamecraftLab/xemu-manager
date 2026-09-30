@@ -1,4 +1,4 @@
-namespace XemuManager.Core.Exceptions.Download;
+namespace XemuManager.Core.DownloadManager.Exceptions;
 
 public enum DownloadError
 {
